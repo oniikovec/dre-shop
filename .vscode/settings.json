@@ -1,0 +1,18 @@
+{
+  "workbench.colorCustomizations": {
+  
+    "titleBar.activeBackground": "#2B2B2B",
+    "titleBar.inactiveBackground": "#3f3f3f",
+    "editor.background": "#2B2B2B",
+    "activityBar.background": "#2B2B2B",
+    "activityBar.activeBackground": "#404040",
+    "sideBar.background": "#333333",
+    "statusBar.background": "#353535",
+    "statusBar.foreground": "#c1c1c1",
+    "editor.lineHighlightBackground": "#383838",
+    "editorGroupHeader.tabsBackground": "#2f2f2f",
+    "tab.activeBackground": "#4e4e4e",
+    "tab.inactiveBackground": "#323232"
+  },
+  "workbench.colorTheme": "Snazzy Operator"
+}
