@@ -51,4 +51,7 @@ $main-color: black;
       @include shrinkLabel();
     }
   }
+  .form-input-sign-in {
+    background-color: aqua;
+  }
 }
