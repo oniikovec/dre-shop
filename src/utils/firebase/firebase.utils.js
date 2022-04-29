@@ -63,14 +63,8 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef)
 
   const querySnapshot = await getDocs(q)
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data()
-    acc[title.toLowerCase()] = items;
-
-    return acc
-  }, {})
-
-  return categoryMap;
+  // this will give us the categories as an array
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data())
 }
 
 // creating new user from Google Auth
@@ -81,7 +75,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   const userSnapshot = await getDoc(userDocRef)
 
   // if the snapshot does not exist, we set it inside of the DB
-  if(!userSnapshot.exists()) {                
+  if (!userSnapshot.exists()) {                
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -96,7 +90,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
       console.log('error creating the user', error.message);
     }
   }
-  return userDocRef;
+  return userSnapshot;
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -114,3 +108,16 @@ export const signOutUser = async () => await signOut(auth);
 
 // gets triggered both times when user signs in or signs out; at the moment that auth changes, it il run a callback
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
