@@ -48,6 +48,7 @@ export const InvertedButton = styled(BaseButton)`
     border: none;
   }
 `
+
 export const ButtonSpinner = styled(SpinnerContainer)`
   width: 30px;
   height: 30px;
